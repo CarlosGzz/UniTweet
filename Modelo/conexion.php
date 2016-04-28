@@ -47,7 +47,7 @@
 					$_SESSION['nom']= $row['nombre'];
 					$_SESSION['ape']= $row['apellido'];
 
-					echo "../unidasweb2/Vista/Eventos.php";
+					echo "../../";
 
 				}else{
 					echo "2";
