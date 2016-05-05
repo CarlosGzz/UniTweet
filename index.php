@@ -104,7 +104,6 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-            <li><a class ="dropdown-toggle" href="#" data-toggle="dropdown">Perfil</a></li>
             <li>
                 <a href="#" type="button" data-toggle="dropdown">Perfil</a>
                 <ul class="dropdown-menu">
