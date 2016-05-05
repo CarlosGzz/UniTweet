@@ -23,7 +23,7 @@
 					$string.='<div class="panel panel-default">';
 					$string.='<div class="panel-body" data-toggle="collapse" href="#collapse1">';
 					$string.='<div class="col-xs-2">';
-					if($tweet->profile_link == "default.png"){
+					if($tweet->profile_link =="" || $tweet->profile_link==null || $tweet->profile_link == "default.png"){
 						$string.='<img src="Vista/IMG/ProfilePhoto/'.$tweet->profile_link.'" alt="ProfileOf'.$tweet->nombre.'" class="img-rounded img-responsive" size="auto">';
 					}else{
 						$string.='<img src="Vista/IMG/ProfilePhoto/'.$tweet->profile_link.'.jpg" alt="ProfileOf'.$tweet->nombre.'" class="img-rounded img-responsive" size="auto">';
