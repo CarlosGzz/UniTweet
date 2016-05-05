@@ -138,7 +138,7 @@
             <div class="col-sm-3">
                 <div class="panel panel-default">
                     <div class="panel-header">
-                         <img src="Vista/IMG/ProfilePhoto/<?php if($_SESSION['profile_link']=="" || $_SESSION['profile_link']==null){echo "default.png";}else{echo $_SESSION['profile_link'].".jpg";}?>" alt="..." class=" img-responsive" size="auto">
+                         <img src="Vista/IMG/ProfilePhoto/<?php if($_SESSION['profile_link']=="" || $_SESSION['profile_link']==null || $_SESSION['profile_link']=='default.png'){echo "default.png";}else{echo $_SESSION['profile_link'].".jpg";}?>" alt="..." class=" img-responsive" size="auto">
                     </div>
                     <div class="panel-body">
                         <h4><?php echo $_SESSION['nom']?> </h4>
