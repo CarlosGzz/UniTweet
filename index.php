@@ -14,7 +14,7 @@
                 }else{
                     $link_image=" ";
                 }
-                date_default_timezone_set("Mexico/Nuevo_Leon");
+                date_default_timezone_set("America/Monterrey");
                 $fecha = date("Y-m-d H:i:s");
                 $sql = "INSERT INTO tweet 
                       (tags, post, link_image, fecha_tweet, handle, num_likes)
@@ -36,9 +36,8 @@
                 if (isset($_POST['text'])) {
                     tweet();
                 }
+            
             }
-
-
 
 
 ?>
@@ -105,7 +104,15 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Perfil</a></li>
+            <li><a class ="dropdown-toggle" href="#" data-toggle="dropdown">Perfil</a></li>
+            <li>
+                <a href="#" type="button" data-toggle="dropdown">Perfil</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Perfil</a></li>
+                    <li><a href="#">Setting</a></li>
+                    <li><a href="Vista/Login">Logout</a></li>
+                </ul>
+            </li>
           </ul>
 
             <button type="button" class="btn btn-danger navbar-right  bajar" data-toggle="modal" data-target="#myModal">Tweet</button>
@@ -132,7 +139,7 @@
             <div class="col-sm-3">
                 <div class="panel panel-default">
                     <div class="panel-header">
-                         <img src="Vista/profilesuperadmin.jpg" alt="..." class=" img-responsive" size="auto">
+                         <img src="Vista/IMG/ProfilePhoto/<?php if($_SESSION['profile_link']=="" || $_SESSION['profile_link']==null){echo "default.png";}else{echo $_SESSION['profile_link'].".jpg";}?>" alt="..." class=" img-responsive" size="auto">
                     </div>
                     <div class="panel-body">
                         <h4><?php echo $_SESSION['nom']?> </h4>

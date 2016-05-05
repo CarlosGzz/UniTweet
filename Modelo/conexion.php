@@ -32,7 +32,7 @@
 			$this->user = $user;
 			$this->pass = $pass;
 
-			$query = "SELECT handle, nombre, id_universidad, biografia, email 
+			$query = "SELECT handle, nombre, id_universidad, biografia, email , profile_link
 					  FROM usuario 
 					  WHERE handle= '".$this->user."' and password='".$this->pass."' ";
 
@@ -47,6 +47,7 @@
 					$_SESSION['correo']= $row['email'];
 					$_SESSION['id_universidad']= $row['id_universidad'];
 					$_SESSION['biografia']= $row['biografia'];
+					$_SESSION['profile_link']= $row['profile_link'];
 
 					echo "../../";
 			} else {
