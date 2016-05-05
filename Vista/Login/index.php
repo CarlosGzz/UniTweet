@@ -2,6 +2,37 @@
   //Index
   session_start();
   session_destroy();
+
+   require "../../Modelo/connect.php";
+   if(!empty($_POST)){
+      if(!empty($_POST['handle'])){
+         $handle = $_POST["handle"];
+         $nombre = $_POST["nombre"];
+         $correo = $_POST["correo"];
+         $contraseña = $_POST["contrasena"];
+         $prefijo = strstr($correo, '@');
+
+      $sql ="SELECT id_universidad FROM universidad WHERE correo_prefijo='$prefijo' ";
+      $data = $db->query($sql);
+      $idUniversidad;
+      while($object = mysqli_fetch_array($data)){
+         $idUniversidad = $object;
+      }
+
+      var_dump($idUniversidad[0]);
+
+      $sql = "INSERT INTO usuario 
+          (nombre, handle, email, password, id_universidad)
+          VALUES 
+          ('$nombre', '$handle', '$correo', '$password', '$idUniversidad[0]')";
+      if ($db->query($sql) === TRUE) {
+        echo "<script> alert('Nuevo Usuario Creado Exitosamente')</script>";
+      } else {
+        echo "Error: " . $sql . "<br>" . $db->error;
+      } 
+      $db->close();
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,16 +114,16 @@
                <form action="index.php" method="POST">
                   <h1>Crear Cuenta</h1>
                   <div>
-                     <input type="text" class="form-control" placeholder="Usuario" required="" />
+                     <input type="text" class="form-control" placeholder="Usuario" name="handle" required />
                   </div>
                   <div>
-                     <input type="text" class="form-control" placeholder="Nombre Completo" required="" />
+                     <input type="text" class="form-control" placeholder="Nombre Completo" name="nombre"  required />
                   </div>
                   <div>
-                     <input type="email" class="form-control" placeholder="Coreo" required="" />
+                     <input type="email" class="form-control" placeholder="Correo" name="correo" required />
                   </div>
                   <div>
-                     <input type="password" class="form-control" placeholder="Password" required="" />
+                     <input type="password" class="form-control" placeholder="Password"  name="contrasena" required />
                   </div>
                   <div>
                      <input type="submit" class="btn btn-default submit">

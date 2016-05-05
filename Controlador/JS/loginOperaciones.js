@@ -13,7 +13,7 @@ $(document).ready(function() {
                 $('#mensaje').show(),
                 $('#mensaje').html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span> Usuario o Contraseña Incorrectas');
               }else{
-                window.location = "../../index.html";
+                window.location = "../../index.php";
               }
           }
         });

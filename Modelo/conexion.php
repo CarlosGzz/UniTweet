@@ -3,10 +3,10 @@
 	class conexion{
 
 		private $conexion ;
-		private $server = "localhost";
-		private $username = "root";
-		private $password = "kobyjzt";
-		private $dbname = "UnidasBD";
+		private $server = "us-cdbr-iron-east-03.cleardb.net";
+		private $username = "bd6ae5abdbbdd1";
+		private $password = "3fc8f834";
+		private $dbname = "heroku_9591bc77f0cc5ca";
 		private $user;
 		private $pass;
 
@@ -32,27 +32,23 @@
 			$this->user = $user;
 			$this->pass = $pass;
 
-			$query = "SELECT username, contrasena, nombre, apellido, authorizado 
-					  FROM Usuarios 
-					  WHERE username= '".$this->user."' and contrasena='".$this->pass."' and prefijo='admin'";
+			$query = "SELECT handle, nombre, id_universidad, biografia, email 
+					  FROM usuario 
+					  WHERE handle= '".$this->user."' and password='".$this->pass."' ";
 
 			
 			$consulta = $this->conexion->query($query);
 			if($row = mysqli_fetch_array($consulta)){
-				if($row['authorizado']==1){
 					session_start(); 
 
 					$_SESSION['validacion'] = 1 ; 
-					$_SESSION['user']= $row['username'];
+					$_SESSION['handle']= $row['handle'];
 					$_SESSION['nom']= $row['nombre'];
-					$_SESSION['ape']= $row['apellido'];
+					$_SESSION['correo']= $row['email'];
+					$_SESSION['id_universidad']= $row['id_universidad'];
+					$_SESSION['biografia']= $row['biografia'];
 
 					echo "../../";
-
-				}else{
-					echo "2";
-				}
-
 			} else {
 
 				session_start();
