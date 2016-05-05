@@ -5,7 +5,7 @@
 		require "../Modelo/connect.php";
 		$data = $db->query("SELECT tweet.id_tweet, tweet.tags,tweet.post, tweet.link_image, tweet.fecha_tweet, tweet.handle, tweet.num_likes, usuario.nombre, usuario.profile_link, usuario.id_universidad FROM tweet LEFT JOIN usuario ON tweet.handle=usuario.handle WHERE usuario.id_universidad = '".$_SESSION['id_universidad']."'ORDER BY fecha_tweet");
 		while($object = mysqli_fetch_object($data)){
-			$tweets[]=$object;
+			$tweets=$object;
 		}
 		var_dump($tweets);
 		//create table
