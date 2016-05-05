@@ -186,9 +186,7 @@
                         <br>
                         <button type="button" class="btn btn-default btn-file">
                             <span  class="glyphicon glyphicon-camera" aria-hidden="true"></span>
-
-                                <input type="file" name="photo" id="photo">
-                            
+                            <input type="file" name="photo" id="photo">
                         </button>
                         <button type="submit" id="tweet" class="btn btn-default" >Tweet</button>
                     </form>

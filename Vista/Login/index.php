@@ -9,7 +9,7 @@
          $handle = $_POST["handle"];
          $nombre = $_POST["nombre"];
          $correo = $_POST["correo"];
-         $contraseña = $_POST["contrasena"];
+         $contrasena = $_POST["contrasena"];
          $prefijo = strstr($correo, '@');
 
       $sql ="SELECT id_universidad FROM universidad WHERE correo_prefijo='$prefijo' ";
@@ -24,7 +24,7 @@
       $sql = "INSERT INTO usuario 
           (nombre, handle, email, password, id_universidad)
           VALUES 
-          ('$nombre', '$handle', '$correo', '$password', '$idUniversidad[0]')";
+          ('$nombre', '$handle', '$correo', '$contrasena', '$idUniversidad[0]')";
       if ($db->query($sql) === TRUE) {
         echo "<script> alert('Nuevo Usuario Creado Exitosamente')</script>";
       } else {
