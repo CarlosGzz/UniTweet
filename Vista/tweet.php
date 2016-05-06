@@ -14,9 +14,6 @@
 				echo '<a href="Vista/tweet.html?num=0">next page</a>';
 
 			}else{
-
-		
-				//create table
 				$string="";
 				foreach ($tweets as $tweet) {
 					
@@ -38,8 +35,8 @@
 					$string.='<p>'.$tweet->post.'</p>';
 					if($tweet->link_image!=" "){
 						$string.= '<div id="collapse1" class="panel-collapse collapse">
-										<div class="panel-footer" style="height:40px, width:40px">
-		  									<img src="Vista/IMG/'.$tweet->link_image.'"" style="height:100%, width:100%">
+										<div class="panel-footer" style="height:400px; width:400px">
+		  									<img src="Vista/IMG/'.$tweet->link_image.'"" style="height:100%; width:100%">
 		  								</div>
 								   </div>';
 					}
@@ -51,7 +48,7 @@
 					$string.='</div>';
 					$string.='</div>';
 				}
-				$string.='<a href="Vista/tweet.html?num='.$limit.'">next page</a>';
+				$string.='<a href="Vista/tweet.php?num='.$limit.'">next page</a>';
 				echo $string;
 			}
 		}

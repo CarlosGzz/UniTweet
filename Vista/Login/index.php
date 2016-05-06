@@ -15,22 +15,27 @@
       $sql ="SELECT id_universidad FROM universidad WHERE correo_prefijo='$prefijo' ";
       $data = $db->query($sql);
       $idUniversidad;
-      while($object = mysqli_fetch_array($data)){
-         $idUniversidad = $object;
+
+      if(mysqli_num_rows($data)>0){
+         while($object = mysqli_fetch_array($data)){
+            $idUniversidad = $object;
+         } 
+
+         var_dump($idUniversidad[0]);
+
+         $sql = "INSERT INTO usuario 
+             (nombre, handle, email, password, id_universidad)
+             VALUES 
+             ('$nombre', '$handle', '$correo', '$contrasena', '$idUniversidad[0]')";
+         if ($db->query($sql) === TRUE) {
+           echo "<script> alert('Nuevo Usuario Creado Exitosamente')</script>";
+         } else {
+           echo "Error: " . $sql . "<br>" . $db->error;
+         } 
+         $db->close();
+      }else{
+         echo "<script>alert('El correo que se introdujo no pertenece a ninguna Universidad registrada');</script>";
       }
-
-      var_dump($idUniversidad[0]);
-
-      $sql = "INSERT INTO usuario 
-          (nombre, handle, email, password, id_universidad)
-          VALUES 
-          ('$nombre', '$handle', '$correo', '$contrasena', '$idUniversidad[0]')";
-      if ($db->query($sql) === TRUE) {
-        echo "<script> alert('Nuevo Usuario Creado Exitosamente')</script>";
-      } else {
-        echo "Error: " . $sql . "<br>" . $db->error;
-      } 
-      $db->close();
     }
   }
 ?>
@@ -43,11 +48,10 @@
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="description" content="Pagina de login para Treats Enterprise Dashboard">
-   <meta name="author" content="Carlos Gonzalez/Chief IronMan Oficcer">
-   <link rel="icon" href="../IMG/diamond.ico">
+   <meta name="description" content="Pagina login y signup de UniTweet">
+    <meta name="author" content="UNITEAM">
 
-   <title>Login/Signin For Treats Enterprise Dashboard</title>
+   <title>Login/Signin para UniTweet</title>
 
    <!-- Bootstrap core CSS -->
 
