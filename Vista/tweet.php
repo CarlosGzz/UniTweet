@@ -34,8 +34,8 @@
 					$string.='<p><b>'.$tweet->nombre.'</b> @'.$tweet->handle.'</p>';
 					$string.='<p>'.$tweet->post.'</p>';
 					if($tweet->link_image!=" "){
-						$string.= '<div id="collapse1" class="panel-collapse collapse">
-										<div class="panel-footer" style="height:400px; width:400px">
+						$string.= '<div data-toggle="modal" data-target="#myModal'.$tweet->id_tweet.'">
+										<div style="height:300px; width:300px">
 		  									<img src="Vista/IMG/'.$tweet->link_image.'"" style="height:100%; width:100%">
 		  								</div>
 								   </div>';
@@ -47,6 +47,25 @@
 					$string.='</div>';
 					$string.='</div>';
 					$string.='</div>';
+					if($tweet->link_image!=" "){
+						$string.='<!-- Tweet Modal -->
+								    <div class="modal fade" id="myModal'.$tweet->id_tweet.'" role="dialog">
+								        <div class="modal-dialog">
+								        
+								            <!-- Modal content-->
+								            <div class="modal-content">
+								                <div class="modal-header">
+								                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+								                </div>
+								                <div class="modal-body">
+								                    <img src="Vista/IMG/'.$tweet->link_image.'"" style="height:100%; width:100%">
+								                </div>
+								            </div>
+								            <!-- /Modal content-->
+								        </div>
+								    </div>
+								    <!-- /Tweet Modal -->';
+					}
 				}
 				$string.='<a href="Vista/tweet.php?num='.$limit.'">next page</a>';
 				echo $string;

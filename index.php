@@ -9,8 +9,10 @@
                 $post = $_POST['text'];
                 $tags = $_POST['text'];
                 $handle = $_SESSION['handle'];
-                if(isset($_POST['image'])){
-                    $link_image = $_POST['image'];
+                if(isset($_FILES["photo"])){
+                    foto();
+                    echo "hola";
+                    $link_image=$_FILES["photo"]["name"];
                 }else{
                     $link_image=" ";
                 }
@@ -28,6 +30,52 @@
                 $db->close();
             }
         }
+    }
+
+    function foto(){
+        $target_dir = "Vista/IMG/";
+        $target_file = $target_dir . basename($_FILES["photo"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["submit"])) {
+            $check = getimagesize($_FILES["photo"]["tmp_name"]);
+            if($check !== false) {
+                echo "File is an image - " . $check["mime"] . ".";
+                $uploadOk = 1;
+            } else {
+                echo "File is not an image.";
+                $uploadOk = 0;
+            }
+        }
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            echo "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+        // Check file size
+        if ($_FILES["photo"]["size"] > 500000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
+                echo "The file ". basename( $_FILES["photo"]["name"]). " has been uploaded.";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+
     }
 
     if(isset($_SESSION)){
@@ -53,7 +101,7 @@
     <meta name="description" content="Pagina Inicial de UniTweet">
     <meta name="author" content="UNITEAM">
 
-    <title>UNITweet</title>
+    <title>UniTweet</title>
 
     <!-- Bootstrap core CSS -->
 
@@ -187,7 +235,7 @@
                     <h4 class="modal-title">Say what you think!</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="index.php" method="post">
+                    <form action="index.php" method="post" enctype="multipart/form-data">
                         <textarea class="form-control" id="text" name="text" rows="3"></textarea>
                         <br>
                         <button type="button" class="btn btn-default btn-file">
@@ -202,6 +250,8 @@
         </div>
     </div>
     <!-- /Tweet Modal -->
+
+
 
 
 </body>
